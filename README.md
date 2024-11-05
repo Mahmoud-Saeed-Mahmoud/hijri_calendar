@@ -166,9 +166,6 @@ try {
 
 ```
 
-
-
-
 ## Contributions 🤝
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request. Let's make this library even better together! 💪
 
