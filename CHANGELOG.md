@@ -1,6 +1,6 @@
 ## v1.0.1+2
 
-- Updated CHANGELOG.md, fixed newline issues in date_functions.dart and hijri_month_week_names.dart, and modified pubspec.yaml with updated description, version, and additional metadata.
+- "Updated CHANGELOG.md and pubspec.yaml to bump version from 1.0.1 to 1.0.1+2 and fixed newline issues in two files."
 
 
 ## v1.0.1+1
