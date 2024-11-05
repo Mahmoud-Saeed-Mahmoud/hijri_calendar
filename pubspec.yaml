@@ -1,7 +1,19 @@
 name: hijri_calendar
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/Shreemanarjun/hijri_calendar
+homepage: https://github.com/Shreemanarjun/hijri_calendar
+documentation: https://github.com/Shreemanarjun/hijri_calendar/wiki
+
+topics:
+  - calendar
+  - hijri
+  - date
+  - islamic-calendar
+  - time
+
+issue_tracker: https://github.com/Shreemanarjun/hijri_calendar/issues
+
 
 environment:
   sdk: ^3.5.4
