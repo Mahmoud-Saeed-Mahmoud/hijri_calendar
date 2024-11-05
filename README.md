@@ -1,4 +1,9 @@
 # Hijri Calendar 📅🌙
+[![Pub Package](https://img.shields.io/pub/v/hijri_calendar.svg)](https://pub.dev/packages/hijri_calendar)
+[![Build Status](https://travis-ci.org/username/repo.svg?branch=main)](https://travis-ci.org/Shreemanarjun/repo)
+[![Coverage Status](https://coveralls.io/repos/github/Shreemanarjun/repo/badge.svg?branch=main)](https://coveralls.io/github/Shreemanarjun/repo?branch=main)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 
 Welcome to the **Hijri Calendar** library! This Dart library allows you to work with Hijri dates easily. Whether you want to create, validate, or convert Hijri dates, this library has you covered! 🎉
 

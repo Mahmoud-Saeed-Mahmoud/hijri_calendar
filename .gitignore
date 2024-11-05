@@ -17,3 +17,7 @@ example/.idea/
 example/build/
 example/.flutter-plugins
 example/.flutter-plugins-dependencies
+
+coverage/
+build/unit_test_assets/NOTICES.Z
+build/test_cache/build/cache.dill.track.dill
