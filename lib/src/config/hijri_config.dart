@@ -189,37 +189,35 @@ class HijriCalendarConfig {
   }
 
   int getDaysInMonth(int year, int month) {
-    bool isLeapYear = _isLeapYear(year);
+    // Standard month lengths
     List<int> monthLengths = [
-      30,
-      29,
-      30,
-      29,
-      30,
-      29,
-      30,
-      29,
-      30,
-      29,
-      30,
-      isLeapYear ? 30 : 29
+      29, // Muḥarram (1st month)
+      30, // Safar (2nd month)
+      29, // Rabīʿ al-Awwal (3rd month)
+      30, // Rabīʿ al-Thānī (4th month)
+      29, // Jumādá al-Ūlá (5th month)
+      30, // Jumādá al-Ākhirah (6th month)
+      29, // Rajab (7th month)
+      29, // Sha'bān (8th month)
+      30, // Ramaḍān (9th month)
+      29, // Shawwāl (10th month)
+      29, // Dhū al-Qa'dah (11th month)
+      30 // Dhū al-Ḥijjah (12th month)
     ];
-    return monthLengths[month - 1];
-  }
 
-  bool _isLeapYear(int year) {
+    // If it's not the 12th month, return standard length
+    if (month != 12) {
+      return monthLengths[month - 1];
+    }
+
+    // Special handling for 12th month (Dhu al-Hijjah)
+    // 11 years in a 30-year cycle have 30 days
+    // These years correspond to specific positions in the 30-year cycle
+    List<int> thirtyDayYears = [2, 5, 7, 10, 13, 16, 18, 21, 24, 26, 29];
+
+    // Check if the current year is in the list of 30-day years
     int mod30 = year % 30;
-    return mod30 == 2 ||
-        mod30 == 5 ||
-        mod30 == 7 ||
-        mod30 == 10 ||
-        mod30 == 13 ||
-        mod30 == 16 ||
-        mod30 == 18 ||
-        mod30 == 21 ||
-        mod30 == 24 ||
-        mod30 == 26 ||
-        mod30 == 29;
+    return thirtyDayYears.contains(mod30) ? 30 : 29;
   }
 
   int _getNewMoonIndex(int year, int month) {
