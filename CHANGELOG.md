@@ -1,3 +1,10 @@
+## v1.0.3+4
+
+- Export additional files from src/config in hijri_calendar.dart
+- Bump version from 1.0.2+2 to 1.0.3+3 in pubspec.yaml
+
+
+
 ## v1.0.2+2
 
 - Updated Hijri calendar configuration and tests to reflect correct month lengths and leap year rules.
