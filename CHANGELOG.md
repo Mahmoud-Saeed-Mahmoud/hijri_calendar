@@ -1,3 +1,8 @@
+## v1.0.2+2
+
+- Updated Hijri calendar configuration and tests to reflect correct month lengths and leap year rules.
+
+
 ## v1.0.1+2
 
 - "Updated CHANGELOG.md and pubspec.yaml to bump version from 1.0.1 to 1.0.1+2 and fixed newline issues in two files."
