@@ -1,9 +1,15 @@
-## v1.0.5+5
+## v1.0.7+7
+
+- Added export for digits_converter.dart and refactored HijriCalendarConfig's formatDate method to use DigitsConverter for Arabic language support.
+
+
+## v1.0.6+6
 
 - Refactor HijriCalendar library: rename HijriConfig to hijri_config, remove HijriCalendar class, update imports and tests accordingly.
 
+## v1.0.5+5
 
-
+- Refactor HijriCalendar library: rename HijriConfig to hijri_config, remove HijriCalendar class, update imports and tests accordingly.
 
 
 ## v1.0.4+4
