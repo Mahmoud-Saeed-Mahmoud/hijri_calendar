@@ -1,4 +1,5 @@
-import 'config/date_functions.dart';
+import 'package:hijri_calendar/src/config/digits_converter.dart';
+
 import 'config/hijri_month_week_names.dart';
 
 class HijriCalendarConfig {
@@ -265,18 +266,76 @@ class HijriCalendarConfig {
     return formatDate(hYear, hMonth, hDay, format);
   }
 
-  String formatDate(int year, int month, int day, String format) {
-    return format
-        .replaceAll("dd", _localizedValue(day.toString(), "day"))
-        .replaceAll("mm", _localizedValue(month.toString(), "month"))
-        .replaceAll("yyyy", _localizedValue(year.toString(), "year"));
+  String formatDate(year, month, day, format) {
+    String newFormat = format;
+
+    String dayString;
+    String monthString;
+    String yearString;
+
+    if (language == 'ar') {
+      dayString = DigitsConverter.convertWesternNumberToEastern(day);
+      monthString = DigitsConverter.convertWesternNumberToEastern(month);
+      yearString = DigitsConverter.convertWesternNumberToEastern(year);
+    } else {
+      dayString = day.toString();
+      monthString = month.toString();
+      yearString = year.toString();
+    }
+
+    if (newFormat.contains("dd")) {
+      newFormat = newFormat.replaceFirst("dd", dayString);
+    } else {
+      if (newFormat.contains("d")) {
+        newFormat = newFormat.replaceFirst("d", day.toString());
+      }
+    }
+
+    //=========== Day Name =============//
+    // Friday
+    if (newFormat.contains("DDDD")) {
+      newFormat = newFormat.replaceFirst(
+          "DDDD", "${_local[language]!['days']![wkDay ?? weekDay()]}");
+
+      // Fri
+    } else if (newFormat.contains("DD")) {
+      newFormat = newFormat.replaceFirst(
+          "DD", "${_local[language]!['short_days']![wkDay ?? weekDay()]}");
+    }
+
+    //============== Month ========================//
+    // 1
+    if (newFormat.contains("mm")) {
+      newFormat = newFormat.replaceFirst("mm", monthString);
+    } else {
+      newFormat = newFormat.replaceFirst("m", monthString);
+    }
+
+    // Muharram
+    if (newFormat.contains("MMMM")) {
+      newFormat =
+          newFormat.replaceFirst("MMMM", _local[language]!['long']![month]!);
+    } else {
+      if (newFormat.contains("MM")) {
+        newFormat =
+            newFormat.replaceFirst("MM", _local[language]!['short']![month]!);
+      }
+    }
+
+    //================= Year ========================//
+    if (newFormat.contains("yyyy")) {
+      newFormat = newFormat.replaceFirst("yyyy", yearString);
+    } else {
+      newFormat = newFormat.replaceFirst("yy", yearString.substring(2, 4));
+    }
+    return newFormat;
   }
 
-  String _localizedValue(String value, String type) {
-    return language == "ar"
-        ? DateFunctions.convertEnglishToHijriNumber(int.parse(value))
-        : value;
-  }
+  // String _localizedValue(String value, String type) {
+  //   return language == "ar"
+  //       ? DateFunctions.convertEnglishToHijriNumber(int.parse(value))
+  //       : value;
+  // }
 
   @override
   String toString() {
