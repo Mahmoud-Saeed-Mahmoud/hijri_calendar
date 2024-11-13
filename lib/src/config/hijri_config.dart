@@ -13,7 +13,7 @@ class HijriCalendarConfig {
   bool isHijri = false;
 
   // Add new variables needed for HijriCalendar compatibility
-  static Map<String, Map<String, Map<int, String>>> _local = {
+  static final Map<String, Map<String, Map<int, String>>> _local = {
     'en': {
       'long': monthNames,
       'short': monthShortNames,
