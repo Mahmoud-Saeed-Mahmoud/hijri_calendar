@@ -1,3 +1,11 @@
+## v1.0.5+5
+
+- Refactor HijriCalendar library: rename HijriConfig to hijri_config, remove HijriCalendar class, update imports and tests accordingly.
+
+
+
+
+
 ## v1.0.4+4
 
 - Added Hijri calendar compatibility functions and localized month and week names for English, Arabic, and Turkish languages to HijriCalendarConfig class.
