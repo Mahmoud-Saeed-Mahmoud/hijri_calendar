@@ -1,6 +1,6 @@
 name: hijri_calendar
 description: "A Dart library for Islamic dates. Explore the Hijri calendar with ease. Perfect for integrating Islamic date functionalities into your applications."
-version: 1.0.3+4
+version: 1.0.4+4
 repository: https://github.com/Shreemanarjun/hijri_calendar
 homepage: https://github.com/Shreemanarjun/hijri_calendar
 documentation: https://github.com/Shreemanarjun/hijri_calendar/wiki

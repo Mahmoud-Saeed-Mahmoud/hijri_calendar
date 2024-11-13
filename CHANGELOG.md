@@ -1,3 +1,9 @@
+## v1.0.4+4
+
+- Added Hijri calendar compatibility functions and localized month and week names for English, Arabic, and Turkish languages to HijriCalendarConfig class.
+
+
+
 ## v1.0.3+4
 
 - Export additional files from src/config in hijri_calendar.dart
