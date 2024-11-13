@@ -106,6 +106,54 @@ const Map<int, String> arShortWdNames = {
   6: "سبت"
 };
 
+const Map<int, String> trMonthNames = {
+  1: 'MUHARREM',
+  2: 'SAFER',
+  3: 'REBİÜLEVVEL',
+  4: 'REBİÜLAHİR',
+  5: 'CEMAZİYELEVVEL',
+  6: 'CEMAZİYELAHİR',
+  7: 'RECEP',
+  8: 'ŞABAN',
+  9: 'RAMAZAN',
+  10: 'ŞEVVAL',
+  11: 'ZİLKADE',
+  12: 'ZİLHİCCE'
+};
+
+const Map<int, String> trMonthShortNames = {
+  1: 'MUHRM',
+  2: 'SAFER',
+  3: 'REBİ1',
+  4: 'REBİ2',
+  5: 'CEMAZ1',
+  6: 'CEMAZ2',
+  7: 'RECEP',
+  8: 'ŞABAN',
+  9: 'RAMZAN',
+  10: 'ŞEVVAL',
+  11: 'ZİLKD',
+  12: 'ZİLHİC'
+};
+const Map<int, String> trWkNames = {
+  7: "Pazar",
+  1: "Pazartesi",
+  2: "Salı",
+  3: "Çarşamba",
+  4: "Perşembe",
+  5: "Cuma",
+  6: "Cumartesi"
+};
+const Map<int, String> trShortWdNames = {
+  7: "Pazar",
+  1: "Pazartesi",
+  2: "Salı",
+  3: "Çarşamba",
+  4: "Perşembe",
+  5: "Cuma",
+  6: "Cumartesi"
+};
+
 ///ummAlquraDate values
 const List<int> ummAlquraDateArray = [
   28607,

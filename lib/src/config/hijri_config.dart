@@ -12,6 +12,27 @@ class HijriCalendarConfig {
   Map<int, int>? adjustments; // User-configurable adjustments
   bool isHijri = false;
 
+  // Add new variables needed for HijriCalendar compatibility
+  static Map<String, Map<String, Map<int, String>>> _local = {
+    'en': {
+      'long': monthNames,
+      'short': monthShortNames,
+      'days': wdNames,
+      'short_days': shortWdNames
+    },
+    'ar': {
+      'long': arMonthNames,
+      'short': arMonthShortNames,
+      'days': arWkNames,
+      'short_days': arShortWdNames
+    },
+    'tr': {
+      'long': trMonthNames,
+      'short': trMonthShortNames,
+      'days': trWkNames,
+      'short_days': trShortWdNames
+    },
+  };
   // Modified constructors to accept adjustments
   HijriCalendarConfig({this.adjustments});
 
@@ -266,5 +287,112 @@ class HijriCalendarConfig {
       String format = language == "ar" ? "yyyy/mm/dd" : "dd/mm/yyyy";
       return "Gregorian Date: ${formatDate(DateTime.now().year, DateTime.now().month, DateTime.now().day, format)}";
     }
+  }
+
+  ///Compatibility functions
+  // Bridge constructor equivalent to HijriCalendar.addMonth
+  static HijriCalendarConfig bridgeAddMonth(int year, int month) {
+    var config = HijriCalendarConfig();
+    config.hYear = month % 12 == 0 ? year - 1 : year;
+    config.hMonth = month % 12 == 0 ? 12 : month % 12;
+    config.hDay = 1;
+    config.isHijri = true;
+    return config;
+  }
+
+  // Bridge method for HijriCalendar.fromDate
+  static HijriCalendarConfig bridgeFromDate(DateTime date) {
+    return HijriCalendarConfig.fromGregorian(date);
+  }
+
+  // Bridge methods to match HijriCalendar API
+  String hDate(int year, int month, int day) {
+    setHijriDate(year, month, day);
+    return formatDate(year, month, day, "dd/mm/yyyy");
+  }
+
+  String toFormat(String format) {
+    return formatDate(hYear, hMonth, hDay, format);
+  }
+
+  bool isBefore(int year, int month, int day) {
+    DateTime current = hijriToGregorian(hYear, hMonth, hDay);
+    DateTime other = hijriToGregorian(year, month, day);
+    return current.isBefore(other);
+  }
+
+  bool isAfter(int year, int month, int day) {
+    DateTime current = hijriToGregorian(hYear, hMonth, hDay);
+    DateTime other = hijriToGregorian(year, month, day);
+    return current.isAfter(other);
+  }
+
+  bool isAtSameMomentAs(int year, int month, int day) {
+    DateTime current = hijriToGregorian(hYear, hMonth, hDay);
+    DateTime other = hijriToGregorian(year, month, day);
+    return current.isAtSameMomentAs(other);
+  }
+
+  String getLongMonthName() {
+    return _local[language]!['long']![hMonth]!;
+  }
+
+  String getShortMonthName() {
+    return _local[language]!['short']![hMonth]!;
+  }
+
+  String getDayName() {
+    return _local[language]!['days']![wkDay ?? weekDay()]!;
+  }
+
+  Map<int, String> getMonths() {
+    return _local[language]!['long']!;
+  }
+
+  Map<int, String> getMonthDays(int month, int year) {
+    Map<int, String> calendar = {};
+    int d = hijriToGregorian(year, month, 1).weekday;
+    int daysInMonth = getDaysInMonth(year, month);
+
+    for (int i = 1; i <= daysInMonth; i++) {
+      calendar[i] = _local[language]!['days']![d]!;
+      d = d < 7 ? d + 1 : 1;
+    }
+
+    return calendar;
+  }
+
+  List<int?> toList() => [hYear, hMonth, hDay];
+
+  String fullDate() {
+    return formatDate(hYear, hMonth, hDay, "DDDD, MMMM dd, yyyy");
+  }
+
+  int weekDay() {
+    return hijriToGregorian(hYear, hMonth, hDay).weekday;
+  }
+
+  static void addLocale(String locale, Map<String, Map<int, String>> names) {
+    _local[locale] = names;
+  }
+
+  int lengthOfYear({int? year}) {
+    int yearToCheck = year ?? hYear;
+    int total = 0;
+    for (int m = 1; m <= 12; m++) {
+      total += getDaysInMonth(yearToCheck, m);
+    }
+    return total;
+  }
+
+  bool isValid() {
+    return validateHijri(hYear, hMonth, hDay) &&
+        hDay <= getDaysInMonth(hYear, hMonth);
+  }
+
+  bool validateHijri(int year, int month, int day) {
+    if (month < 1 || month > 12) return false;
+    if (day < 1 || day > 30) return false;
+    return true;
   }
 }
