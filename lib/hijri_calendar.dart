@@ -6,5 +6,5 @@ library;
 export 'src/hijri_calendar_base.dart';
 export 'src/config/date_functions.dart';
 export 'src/config/hijri_adjustment_maps.dart';
-export 'src/config/hijri_config.dart';
+export 'src/hijri_config.dart';
 export 'src/config/hijri_month_week_names.dart';

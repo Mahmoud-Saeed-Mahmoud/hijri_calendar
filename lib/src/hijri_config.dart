@@ -1,5 +1,5 @@
-import 'date_functions.dart';
-import 'hijri_month_week_names.dart';
+import 'config/date_functions.dart';
+import 'config/hijri_month_week_names.dart';
 
 class HijriCalendarConfig {
   // Configuration variables

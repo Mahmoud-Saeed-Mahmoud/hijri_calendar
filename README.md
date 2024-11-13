@@ -152,22 +152,57 @@ print('Days in Shawwal 1444: $daysInMonth');
 // Format a specific date
 String formattedDate = calendar.formatDate(1444, 10, 27, "dd/mm/yyyy");
 print('Formatted date: $formattedDate');
-```
-### Error Handling
-The library includes built-in date validation. It will throw ArgumentError for invalid dates:
 
-```dart
-try {
-  HijriCalendarConfig.fromHijri(1500, 13, 1); // Invalid month
-} catch (e) {
-  print('Error: $e'); // Prints: Error: Hijri month must be between 1 and 12
-}
+// NEW: Compatibility APIs
+// Bridge method to add a month
+var nextMonth = HijriCalendarConfig.bridgeAddMonth(1444, 11);
+print('Next month: ${nextMonth.fullDate()}');
 
-try {
-  HijriCalendarConfig.fromGregorian(DateTime(2077, 1, 1)); // Out of supported range
-} catch (e) {
-  print('Error: $e'); // Prints: Error: Gregorian year out of supported range (1937-2076)
-}
+// Create from DateTime
+var fromDate = HijriCalendarConfig.bridgeFromDate(DateTime.now());
+print('Current date: ${fromDate.fullDate()}');
+
+// Format Hijri date with specific pattern
+var hijriDate = HijriCalendarConfig.fromHijri(1444, 10, 27);
+print('Formatted: ${hijriDate.toFormat("DDDD, MMMM dd, yyyy")}');
+
+// Get month and day names
+print('Month name: ${hijriDate.getLongMonthName()}');
+print('Short month: ${hijriDate.getShortMonthName()}');
+print('Day name: ${hijriDate.getDayName()}');
+
+// Date comparison methods
+var compareDate = HijriCalendarConfig.fromHijri(1444, 11, 1);
+print('Is before: ${hijriDate.isBefore(1444, 11, 1)}');
+print('Is after: ${hijriDate.isAfter(1444, 9, 1)}');
+print('Same moment: ${hijriDate.isAtSameMomentAs(1444, 10, 27)}');
+
+// Get calendar information
+var months = hijriDate.getMonths();
+print('All months: $months');
+
+// Get days in a specific month
+var monthDays = hijriDate.getMonthDays(1444, 10);
+print('Days in month: $monthDays');
+
+// Convert to List format
+List<int?> dateList = hijriDate.toList();
+print('Date as list: $dateList'); // [1444, 10, 27]
+
+// Get length of year
+int yearLength = hijriDate.lengthOfYear();
+print('Days in year: $yearLength');
+
+// Validate dates
+print('Is valid date: ${hijriDate.isValid()}');
+
+// Add new locale
+HijriCalendarConfig.addLocale('fr', {
+  'long': {1: 'Mouharram', 2: 'Safar', /* ... */},
+  'short': {1: 'Mou', 2: 'Saf', /* ... */},
+  'days': {1: 'Lundi', /* ... */},
+  'short_days': {1: 'Lun', /* ... */}
+});
 
 ```
 

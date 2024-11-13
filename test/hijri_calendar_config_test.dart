@@ -1,4 +1,4 @@
-import 'package:hijri_calendar/src/config/hijri_config.dart';
+import 'package:hijri_calendar/src/hijri_config.dart';
 import 'package:test/test.dart';
 
 void main() {
