@@ -22,18 +22,23 @@ final Map<int, int> hijriAdjustments2014to2034 = {
   35929: 47331, // 2031 adjustments
   35940: 47342, // 2032 adjustments
   35951: 47353, // 2033 adjustments
-  35962:
-      47364, // 2034 adjustments// Add this if you need specific adjustment for 2034
+  35962: 47364, // 2034 adjustments
 
   14567: 1, // Specific adjustment for Hijri year 1456, month 7
-  // Specific adjustments for problematic conversions
   17355: -1, // Specific adjustment for ILN 17355 to correct Hijri date
-
-  // Specific adjustment for Hijri year 1456, month 7
-  17467: 1,
+  17467: 1, // Specific adjustment for Hijri year 1456, month 7
 
   // Add other adjustments as needed
-
   144601: 29, // 1446-01 (Muharram) is 29 days
   144602: 30, // 1446-02 (Safar) is 30 days
+  144603: 29, // 1446-03 (Rabi' al-awwal) is 29 days
+  144604: 30, // 1446-04 (Rabi' al-thani) is 30 days
+  144605: 29, // 1446-05 (Jumada al-ula) is 29 days
+  144606: 30, // 1446-06 (Jumada al-akhirah) is 30 days
+  144607: 30, // 1446-07 (Rajab) is 30 days
+  144608: 29, // 1446-08 (Sha'ban) is 29 days
+  144609: 29, // 1446-09 (Ramadan) is 29 days
+  144610: 30, // 1446-10 (Shawwal) is 30 days
+  144611: 29, // 1446-11 (Dhu al-Qi'dah) is 29 days
+  144612: 29, // 1446-12 (Dhu al-Hijjah) is 29 days
 };

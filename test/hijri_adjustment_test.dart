@@ -78,5 +78,35 @@ void main() {
       expect(startOfMonth.hDay >= 1, isTrue,
           reason: 'Day should not be less than 1');
     });
+
+    test('Verify leap year handling in Hijri calendar', () {
+      final leapYearConfig = HijriCalendarConfig();
+      expect(leapYearConfig.getDaysInMonth(1442, 12), equals(30),
+          reason: 'Dhu al-Hijjah should have 30 days in a leap year');
+      expect(leapYearConfig.getDaysInMonth(1443, 12), equals(29),
+          reason: 'Dhu al-Hijjah should have 29 days in a regular year');
+    });
+
+    test('Verify edge cases for JDN calculations', () {
+      final config = HijriCalendarConfig();
+      final edgeDate1 = config.hijriToGregorian(1444, 12, 29);
+      expect(edgeDate1.isBefore(DateTime(2024, 1, 1)), isTrue,
+          reason: 'Last day of Hijri year should be within the same Gregorian year');
+
+      final edgeDate2 = config.hijriToGregorian(1445, 1, 1);
+      expect(edgeDate2.isAfter(DateTime(2023, 12, 31)), isTrue,
+          reason: 'First day of Hijri year should be within the next Gregorian year');
+    });
+
+    test('Verify month boundaries for specific adjustments', () {
+      final config = HijriCalendarConfig(adjustments: hijriAdjustments2014to2034);
+      final endOfMonth = config.hijriToGregorian(1446, 1, 29);
+      expect(endOfMonth, equals(DateTime(2024, 8, 4)),
+          reason: 'End of Muharram 1446 should be 2024-08-04');
+
+      final startOfMonth = config.hijriToGregorian(1446, 2, 1);
+      expect(startOfMonth, equals(DateTime(2024, 8, 5)),
+          reason: 'Start of Safar 1446 should be 2024-08-05');
+    });
   });
 }

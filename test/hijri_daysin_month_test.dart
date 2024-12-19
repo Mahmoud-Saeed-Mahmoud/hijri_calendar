@@ -21,6 +21,7 @@ void main() {
       expect(hijri.hMonth, 01);
       expect(hijri.hYear, 1446);
     });
+
     test('Test specific months in 1446 AH', () {
       final config =
           HijriCalendarConfig(adjustments: hijriAdjustments2014to2034);
@@ -32,7 +33,7 @@ void main() {
           reason: 'Safar 1446 should be 30 days');
 
       expect(config.getDaysInMonth(1446, 3), equals(29),
-          reason: ' Rabi al-awwal 1446 should be 29 days');
+          reason: 'Rabi al-awwal 1446 should be 29 days');
     });
 
     test('Test full year month lengths pattern', () {
@@ -42,7 +43,7 @@ void main() {
       final List<int> expectedMonthLengths = [
         29, // Muharram
         30, // Safar
-        30, // Rabi' al-awwal
+        29, // Rabi' al-awwal
         30, // Rabi' al-thani
         29, // Jumada al-ula
         30, // Jumada al-akhirah
@@ -55,11 +56,43 @@ void main() {
       ];
 
       for (int month = 1; month <= 12; month++) {
-        print(
-            'Month $month of 1446 should be ${expectedMonthLengths[month - 1]} days but getindays ${config.getDaysInMonth(
-          1446,
-          month,
-        )}');
+        expect(config.getDaysInMonth(1446, month),
+            equals(expectedMonthLengths[month - 1]),
+            reason:
+                'Month $month of 1446 should be ${expectedMonthLengths[month - 1]} days');
+      }
+    });
+
+    test('Verify leap year handling in Hijri calendar', () {
+      final leapYearConfig = HijriCalendarConfig();
+      expect(leapYearConfig.getDaysInMonth(1442, 12), equals(30),
+          reason: 'Dhu al-Hijjah should have 30 days in a leap year');
+      expect(leapYearConfig.getDaysInMonth(1443, 12), equals(29),
+          reason: 'Dhu al-Hijjah should have 29 days in a regular year');
+    });
+
+    test('Verify month lengths for a typical Hijri year', () {
+      final config = HijriCalendarConfig();
+      final testYear = 1443; // Example year
+      final monthLengths = [
+        29, // Muḥarram
+        30, // Safar
+        29, // Rabīʿ al-Awwal
+        30, // Rabīʿ al-Thānī
+        29, // Jumādá al-Ūlá
+        30, // Jumādá al-Ākhirah
+        29, // Rajab
+        29, // Sha'bān
+        30, // Ramaḍān
+        29, // Shawwāl
+        29, // Dhū al-Qa'dah
+        29 // Dhū al-Ḥijjah
+      ];
+
+      for (int month = 1; month <= 12; month++) {
+        expect(config.getDaysInMonth(testYear, month), monthLengths[month - 1],
+            reason:
+                'Expected month $month of $testYear to have ${monthLengths[month - 1]} days');
       }
     });
   });
