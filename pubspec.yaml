@@ -16,7 +16,7 @@ issue_tracker: https://github.com/Shreemanarjun/hijri_calendar/issues
 
 
 environment:
-  sdk: ^3.5.4
+  sdk: ^3.5.3
 
 # Add regular dependencies here.
 # dependencies:
